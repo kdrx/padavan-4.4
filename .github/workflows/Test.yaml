@@ -8,9 +8,12 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     steps:
-      - run: |
+      - name: prepare
+        run: |
           sudo apt update
           sudo apt install unzip
+      - name: do 
+        run: |
           curl -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/upx/upx/actions/artifacts/287414472/zip -Lo upx.zip 
           unzip upx.zip
           chmod +x upx
